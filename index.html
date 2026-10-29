@@ -338,7 +338,17 @@ img{display:block;max-width:100%}
 .how{display:grid;gap:8px;margin-top:34px}
 .how div{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:999px;background:rgba(243,239,230,.08);font-weight:500}
 .how .pill{font-weight:800}
-.book-ph{margin-top:12px;height:clamp(200px,20vw,300px)}
+.book-ph{margin-top:12px;height:clamp(280px,30vw,440px)}
+.book-ph img{object-position:55% 55%}
+.book-ph .pill{position:absolute;left:16px;top:16px;rotate:-4deg;z-index:2}
+.fmt{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(16px,2.4vw,36px);align-items:start;margin-top:44px}
+.fmt-ph{position:sticky;top:96px;margin:0}
+.fmt-ph .ph{aspect-ratio:3/4}
+.fmt-ph .pill{position:absolute;left:16px;top:16px;rotate:-4deg;z-index:2}
+.fmt .group:first-child{margin-top:0}
+.fmt .row{grid-template-columns:56px 1fr 52px}
+.fmt .row p{grid-column:2;grid-row:2;margin-top:6px}
+.fmt .row .go{grid-column:3;grid-row:1/3}
 .form-card{border-radius:calc(var(--r) - 8px);background:var(--paper);color:var(--ink);padding:clamp(24px,3vw,44px)}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field{display:block;border-radius:22px;background:var(--paper2);padding:14px 18px 10px;border:1.5px solid transparent;transition:border-color .4s}
@@ -400,14 +410,41 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
 .t-choices button:hover{background:var(--ink);color:var(--cream)}
 .t-choices button.go{background:var(--olive)}
 #tEar1,#tEar2{transform-box:fill-box;transform-origin:50% 100%}
-#tEar1{animation:ear 7s ease-in-out infinite}
-#tEar2{animation:ear 7s ease-in-out 3.5s infinite}
-@keyframes ear{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-14deg)}96%{transform:rotate(6deg)}}
-#tLid{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0);animation:lid 5s infinite}
-@keyframes lid{0%,94%,100%{transform:scaleY(0)}97%{transform:scaleY(1)}}
+#tEar1,#tEar2{transition:transform .35s var(--ease)}
+.flick1 #tEar1,.flick2 #tEar2{animation:ear .7s ease-in-out}
+@keyframes ear{0%,100%{transform:rotate(0)}35%{transform:rotate(-16deg)}70%{transform:rotate(7deg)}}
+.t-horse:hover #tEar1,.t-horse:hover #tEar2,.happy #tEar1,.happy #tEar2{transform:rotate(9deg)}
+.no #tEar1,.no #tEar2{transform:rotate(-22deg)}
+#tLid{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0);transition:transform .09s}
+.blink #tLid{transform:scaleY(1)}
+#tGlint{transition:transform .3s var(--ease)}
+#tLook{transform-box:view-box;transform-origin:60px 200px}
+#tBreath{transform-box:view-box;transform-origin:60px 200px;animation:breathe 3.8s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.012) rotate(-.6deg)}}
+.st{transform-box:fill-box;transform-origin:100% 0;animation:sway 2.6s ease-in-out infinite}
+.st.s2{animation-duration:3.1s;animation-delay:-.8s}.st.s3{animation-duration:2.2s;animation-delay:-1.4s}.st.s4{transform-origin:0 0;animation-duration:3.4s;animation-delay:-.4s}
+@keyframes sway{50%{transform:skewY(-7deg) rotate(4deg)}}
+#tNostril{transform-box:fill-box;transform-origin:30% 50%;animation:nostril 3.8s ease-in-out infinite}
+@keyframes nostril{50%{transform:scale(1.25)}}
+#tPuff{opacity:0}
+#tPuff circle{transform-box:fill-box;transform-origin:center}
+.snort #tPuff{animation:puff 1s ease-out}
+@keyframes puff{0%{opacity:.9;transform:translate(-14px,0) scale(.4)}100%{opacity:0;transform:translate(14px,-6px) scale(1.6)}}
 #tHead{transform-box:view-box;transform-origin:70px 190px}
 .talking #tHead{animation:nod .5s ease-in-out infinite alternate}
 @keyframes nod{to{transform:rotate(-2.5deg)}}
+.happy #tHead{animation:yes .9s ease-in-out}
+@keyframes yes{25%,75%{transform:rotate(-6deg)}50%{transform:rotate(2deg)}}
+.no #tHead{animation:shake .8s ease-in-out}
+@keyframes shake{20%,60%{transform:translateX(-4px) rotate(1.5deg)}40%,80%{transform:translateX(4px) rotate(-1.5deg)}}
+.snort #tHead{animation:snorthead 1s ease-out}
+@keyframes snorthead{15%{transform:rotate(-4deg)}35%{transform:rotate(2deg)}}
+/* видео из Kling: если положить img/tulpar.mp4 (и img/tulpar-talk.mp4) — заменит рисунок */
+.t-vid{position:absolute;inset:4%;border-radius:50%;overflow:hidden;box-shadow:0 0 0 4px var(--olive);background:var(--char2)}
+.t-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.t-vid .talk{opacity:0}
+.t-horse.talking .t-vid .talk{opacity:1}
+.t-horse.has-vid>svg{visibility:hidden}
 #tJaw{transform-box:fill-box;transform-origin:10% 0}
 .talking #tJaw{animation:jaw .18s ease-in-out infinite alternate}
 @keyframes jaw{to{transform:translateY(4px) rotate(6deg)}}
@@ -448,6 +485,10 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
   .row .go{grid-column:3;grid-row:1/3;width:44px;height:44px}
   .preview{display:none}
   .form{grid-template-columns:1fr}
+  .fmt{grid-template-columns:1fr}
+  .fmt-ph{position:relative;top:0}
+  .fmt-ph .ph{aspect-ratio:4/4.4}
+  .fmt .row{grid-template-columns:44px 1fr 48px}
   .mbar{display:flex;position:fixed;z-index:66;left:10px;right:10px;bottom:10px;gap:6px;padding:6px;background:rgba(28,28,26,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:999px;transform:translateY(140%);transition:transform .8s var(--ease)}
   .mbar.show{transform:none}
   .mbar button{flex:1;height:50px;border-radius:999px;border:0;font:700 15px/1 var(--font);cursor:pointer}
@@ -684,6 +725,9 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <h2 class="h" data-split>Повод <span class="hp pink r">найдётся</span></h2>
     <p class="lead mute" data-fade>Фотосессии, женские прогулки, особые события и путешествия на несколько дней. Чистый семейный формат — без алкоголя.</p>
   </div>
+  <div class="fmt">
+  <figure class="fmt-ph"><div class="ph" data-reveal><img src="img/girl-clouds.jpg" alt="Девушка смотрит на горы, затянутые облаками" loading="lazy"></div><span class="pill pink">горы, облака и тишина</span></figure>
+  <div class="fmt-list">
   <div class="group">
     <span class="pill pink">фотосессии</span>
     <div class="row" data-book="Фотосессия с карачаевской лошадью" data-cursor="Записаться"><span class="n">01</span><h3>С карачаевской лошадью</h3><p>Можно на земле или несколько кадров в седле.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
@@ -702,6 +746,8 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <div class="row" data-book="Кисловодск верхом — тур выходного дня" data-cursor="Программа"><span class="n">08</span><h3>Кисловодск верхом · 2 дня</h3><p>День знакомства и день большого горного маршрута.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
     <div class="row" data-book="Выходные на высоте" data-cursor="Программа"><span class="n">09</span><h3>Выходные на высоте · 2 дня</h3><p>Несколько маршрутов, пикник и фотосъёмка по желанию.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
     <div class="row" data-book="Карачаевские лошади Кавказа" data-cursor="Программа"><span class="n">10</span><h3>Лошади Кавказа</h3><p>Путешествие о породе, людях и культуре.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+  </div>
+  </div>
   </div>
 </section>
 
@@ -722,6 +768,7 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <div>
       <h2 class="h" data-split>Какой Кавказ <span class="hp olive">увидите</span> вы?</h2>
       <div class="how" data-fade><div><span class="pill olive">01</span>Вы оставляете заявку — это минута</div><div><span class="pill pink">02</span>Мы связываемся и уточняем детали</div><div><span class="pill paper">03</span>Встречаемся у лошадей. Дальше — тропа</div></div>
+      <div class="ph book-ph" data-reveal><img src="img/dog-pet.jpg" alt="Кавказская овчарка подходит к руке гостя на солнечном плато" loading="lazy"><span class="pill paper">друзья на плато</span></div>
     </div>
     <div class="form-card" data-fade>
       <form class="form" id="mainForm">
@@ -775,21 +822,23 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <svg viewBox="0 0 200 200" aria-hidden="true">
       <defs><clipPath id="tClip"><circle cx="100" cy="118" r="80"/><rect x="40" y="0" width="120" height="110"/></clipPath></defs>
       <circle cx="100" cy="118" r="80" fill="#a7a23e"/>
-      <g clip-path="url(#tClip)"><g transform="translate(8 16) scale(.9)"><g id="tHead">
+      <g clip-path="url(#tClip)"><g id="tLook"><g id="tBreath"><g transform="translate(8 16) scale(.9)"><g id="tHead">
         <path id="tEar1" d="M80 66 C74 46 76 30 82 18 C92 30 98 44 97 62Z" fill="#14100e"/>
         <path id="tEar2" d="M94 62 C93 42 97 28 105 16 C112 30 113 46 108 64Z" fill="#221a16"/>
         <path d="M99 56 C99 44 102 34 105 27 C108 36 108 46 106 56Z" fill="#4a3a32"/>
         <path d="M40 210 C34 150 48 98 80 62 C92 52 108 52 120 62 C136 78 152 104 165 128 C172 141 170 155 157 158 C149 160 141 158 135 153 C125 151 111 146 101 138 C94 132 90 127 89 123 C93 150 103 178 117 210Z" fill="#1c1613"/>
         <path d="M108 62 C126 76 146 104 160 130 C150 112 132 84 116 66Z" fill="#33281f"/>
+        <g fill="#0c0908"><path class="st s1" d="M74 62 C60 70 50 80 44 94 C54 88 64 80 76 70Z"/><path class="st s2" d="M58 82 C44 94 38 108 36 122 C46 112 54 102 62 92Z"/><path class="st s3" d="M44 106 C34 120 30 134 30 150 C38 138 44 126 48 114Z"/></g>
         <path d="M82 58 C62 70 46 98 41 132 C37 160 38 188 40 210 L22 210 C18 182 22 150 30 124 C26 120 28 112 34 106 C34 98 40 92 44 88 C46 78 56 70 62 66 C66 60 74 56 82 56Z" fill="#0c0908"/>
-        <path d="M96 54 C108 62 112 76 106 92 C102 80 96 72 88 66Z" fill="#0c0908"/>
+        <path class="st s4" d="M96 54 C108 62 112 76 106 92 C102 80 96 72 88 66Z" fill="#0c0908"/>
         <g fill="none" stroke="#e6b2a2" stroke-width="3" stroke-linecap="round"><path d="M96 64 C104 68 112 70 120 68"/><path d="M100 66 C106 88 116 108 126 122"/><path d="M126 122 C136 118 146 116 156 114"/><path d="M126 122 C130 132 134 142 138 150"/></g>
-        <ellipse cx="111" cy="88" rx="5.5" ry="6.5" fill="#0a0807"/><circle cx="113" cy="85.5" r="1.8" fill="#fff"/>
+        <ellipse cx="111" cy="88" rx="5.5" ry="6.5" fill="#0a0807"/><circle id="tGlint" cx="113" cy="85.5" r="1.8" fill="#fff"/>
         <ellipse id="tLid" cx="111" cy="88" rx="6.5" ry="7.5" fill="#1c1613"/>
         <path d="M104 80 C108 77 114 77 118 80" fill="none" stroke="#0c0908" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M154 134 C158 132 161 135 159 139" fill="none" stroke="#0a0807" stroke-width="2.4" stroke-linecap="round"/>
+        <path id="tNostril" d="M154 134 C158 132 161 135 159 139" fill="none" stroke="#0a0807" stroke-width="2.4" stroke-linecap="round"/>
         <path id="tJaw" d="M134 150 C142 158 152 160 158 156 C156 162 146 164 136 158Z" fill="#14100e"/>
-      </g></g></g>
+      </g></g></g></g></g>
+      <g id="tPuff" fill="#f3efe6"><circle cx="176" cy="150" r="4"/><circle cx="184" cy="144" r="3"/><circle cx="182" cy="156" r="2.5"/></g>
     </svg>
   </button>
   <div class="t-bubble" role="dialog" aria-label="Конь Тулпар">
@@ -823,7 +872,7 @@ const MYTHS=[
 const mgrid=$('#mgrid');let score=0,answered=0;
 MYTHS.forEach((m,i)=>{const c=document.createElement('article');c.className='mc';c.setAttribute('data-fade','');c.style.setProperty('--d',(i%3)*.08+'s');
   c.innerHTML=`<div class="top"><span class="qn">Вопрос #${i+1}</span><span class="pill ghost">${['новичкам','на тропе','безопасность','порода','фото','характер'][i]}</span></div><p class="q">${m.q}</p><div class="pick"><button class="t">Правда</button><button class="f">Миф</button></div><div class="ans"><div class="ans-h"><b>Ответ:</b><span class="pill ${m.t?'olive':'choco'}">${m.t?'правда':'миф'}</span><svg class="loop" viewBox="0 0 170 70" aria-hidden="true" style="width:90px"><path d="M4 44 C34 44 56 34 62 20 C67 7 50 3 44 14 C36 29 56 50 86 50 C112 50 138 42 160 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M148 24 L161 32 L148 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p>${m.e}</p></div><span class="verdict"></span>`;
-  c.querySelectorAll('.pick button').forEach(b=>b.onclick=()=>{const ok=b.classList.contains('t')===m.t;c.classList.add('done',ok?'ok':'no');c.querySelector('.verdict').innerHTML=`<span class="pill ${ok?'olive':'pink'}">${ok?'угадали':'мимо'}</span>`;requestAnimationFrame(()=>c.querySelector('.loop').classList.add('in'));score+=ok;answered++;$('#score').textContent=score+' / 6';if(answered===MYTHS.length)finish()});
+  c.querySelectorAll('.pick button').forEach(b=>b.onclick=()=>{const ok=b.classList.contains('t')===m.t;c.classList.add('done',ok?'ok':'no');c.querySelector('.verdict').innerHTML=`<span class="pill ${ok?'olive':'pink'}">${ok?'угадали':'мимо'}</span>`;requestAnimationFrame(()=>c.querySelector('.loop').classList.add('in'));score+=ok;answered++;window.tulparReact&&tulparReact(ok);$('#score').textContent=score+' / 6';if(answered===MYTHS.length)finish()});
   mgrid.append(c)});
 function finish(){const c=document.createElement('article');c.className='mc cta';c.setAttribute('data-fade','');c.innerHTML=`<span class="pill ink" style="align-self:flex-start">${score} из 6</span><p class="q">${score>=5?'Вы готовы к первой тропе':'Теперь вы знаете главное'}</p><button class="btn" data-book="Первое знакомство">Записаться <span class="ar"><svg width="18" height="18"><use href="#arr"/></svg></span></button>`;mgrid.append(c);requestAnimationFrame(()=>c.classList.add('in'))}
 
@@ -832,6 +881,12 @@ $$('[data-split]').forEach(el=>{let i=0;const walk=n=>{[...n.childNodes].forEach
 $$('#heroTitle .ln').forEach((ln,k)=>{const t=ln.textContent;ln.textContent='';[...t].forEach((ch,j)=>{const s=document.createElement('span');s.className='ch';s.textContent=ch;s.style.setProperty('--i',j+k*3);ln.append(s)})});
 const scrub=$('#scrub');{const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(' ');return}const s=document.createElement('span');s.className='wd';s.textContent=t;f.append(s)});c.replaceWith(f)}else if(c.classList.contains('chip')||c.classList.contains('hp'))c.classList.add('wd');else walk(c)})};walk(scrub)}
 const words=[...scrub.querySelectorAll('.wd')];
+
+/* ---------- видео-гнёзда (Kling): положите mp4 в img/ — и он заменит фото ---------- */
+function loadVideo(src,onReady){const v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.autoplay=true;v.preload='auto';v.setAttribute('muted','');v.setAttribute('playsinline','');
+  v.addEventListener('loadeddata',()=>{v.play().catch(()=>{});onReady(v)},{once:true});v.src=src}
+let heroVid=null;
+if(!reduce)loadVideo('img/hero.mp4',v=>{v.className='hero-img hero-vid';v.style.opacity=0;$('#heroMedia').append(v);heroVid=v;requestAnimationFrame(()=>{v.style.transition='opacity 1.4s';v.style.opacity=1})});
 
 /* ---------- прелоадер ---------- */
 const loader=$('#loader'),count=$('#loaderCount'),heroImg=$('#heroImg');
@@ -891,7 +946,7 @@ function frame(){
   cx=lerp(cx,mx,.2);cy=lerp(cy,my,.2);cur.style.transform=`translate(${cx}px,${cy}px)`;
   if(Math.abs(dy)>2)nav.classList.toggle('hide',dy>0&&y>vh*.8&&!menu.classList.contains('open'));
   progress.style.transform=`scaleX(${y/(document.documentElement.scrollHeight-vh)})`;
-  if(y<vh*1.2&&!reduce){heroMedia.style.transform=`translate3d(0,${y*.3}px,0)`;hx=lerp(hx,(mx/vw-.5)*-20,.06);hy=lerp(hy,(my/vh-.5)*-12,.06);heroImg.style.translate=`${hx}px ${hy}px`}
+  if(y<vh*1.2&&!reduce){heroMedia.style.transform=`translate3d(0,${y*.3}px,0)`;hx=lerp(hx,(mx/vw-.5)*-20,.06);hy=lerp(hy,(my/vh-.5)*-12,.06);const ht=`${hx}px ${hy}px`;heroImg.style.translate=ht;if(heroVid)heroVid.style.translate=ht}
   const sr=scrub.getBoundingClientRect(),sp=clamp((vh*.85-sr.top)/(sr.height+vh*.3));const on=Math.floor(sp*words.length*1.05);words.forEach((w,i)=>w.classList.toggle('on',i<on));
   if(desk){const r=routes.getBoundingClientRect(),p=clamp(-r.top/(routes.offsetHeight-vh));track.style.transform=`translate3d(${-p*hDist}px,0,0)`;hLine.style.transform=`scaleX(${p})`;hCnt.textContent=String(Math.min(6,Math.floor(p*6.2)+1)).padStart(2,'0')+' / 06';
     if(r.top<vh&&r.bottom>0)cards.forEach(c=>{const b=c.getBoundingClientRect(),k=(b.left+b.width/2-vw/2)/vw;c.firstElementChild.style.transform=`translate3d(${k*-7}%,0,0)`})}
@@ -952,10 +1007,27 @@ const T={
 const tEl=$('#tulpar'),tText=$('#tText'),tChoices=$('#tChoices'),tSvg=$('.t-horse svg'),canSpeak='speechSynthesis' in window;
 let typing=null,voiceOn=false,speaking=false,fi=Math.floor(Math.random()*T.facts.length),ti=Math.floor(Math.random()*T.tips.length),idle=null,lastHint=null;
 if(!canSpeak)$('#tVoice').style.display='none';
+const tBtn=$('#tHorse');
+function setTalking(on){tSvg.classList.toggle('talking',on);tBtn.classList.toggle('talking',on)}
+/* «жизнь» Тулпара: моргает, прядёт ушами, фыркает, следит за курсором */
+const pulse=(cls,ms)=>{tSvg.classList.add(cls);setTimeout(()=>tSvg.classList.remove(cls),ms)};
+const visible=()=>!tEl.classList.contains('away')&&!document.hidden;
+(function blink(){if(visible())pulse('blink',140);if(Math.random()<.25)setTimeout(()=>pulse('blink',140),260);setTimeout(blink,2200+Math.random()*3800)})();
+(function flick(){if(visible())pulse(Math.random()<.5?'flick1':'flick2',700);setTimeout(flick,3000+Math.random()*5000)})();
+(function snort(){if(visible()&&!tSvg.classList.contains('talking'))pulse('snort',1000);setTimeout(snort,14000+Math.random()*16000)})();
+const tLook=$('#tLook'),tGlint=$('#tGlint');let la=0,gx=0,gy=0;
+(function look(){if(visible()&&!reduce){const r=tBtn.getBoundingClientRect(),dx=mx-(r.left+r.width*.6),dy=my-(r.top+r.height*.45),d=Math.hypot(dx,dy)||1;
+  la=lerp(la,clamp(Math.atan2(dy,Math.max(dx,40))*180/Math.PI*.16,-7,7),.08);gx=lerp(gx,dx/d*1.4,.12);gy=lerp(gy,dy/d*1.4,.12);
+  tLook.style.transform=`rotate(${la}deg)`;tGlint.style.transform=`translate(${gx}px,${gy}px)`}requestAnimationFrame(look)})();
+window.tulparReact=ok=>{if(tEl.classList.contains('away'))return;pulse(ok?'happy':'no',900);
+  if(!tEl.classList.contains('closed'))say(ok?['Верно! Иго-го!','В точку. Вы прирождённый всадник.','Правильно — я бы сам лучше не ответил.'][Math.floor(Math.random()*3)]:['Почти! Загляните в ответ.','Мимо, но не страшно — для этого и игра.','Ничего, на тропе разберёмся вместе.'][Math.floor(Math.random()*3)])};
+/* видео из Kling: img/tulpar.mp4 — спокойный, img/tulpar-talk.mp4 — говорит */
+if(!reduce)loadVideo('img/tulpar.mp4',idle=>{const box=document.createElement('span');box.className='t-vid';idle.className='idle';box.append(idle);tBtn.prepend(box);tBtn.classList.add('has-vid');
+  loadVideo('img/tulpar-talk.mp4',talk=>{talk.className='talk';box.append(talk)})});
 function say(text,choices){
-  clearInterval(typing);tSvg.classList.add('talking');tText.textContent='';const c=document.createElement('span');c.className='cur';let i=0;
-  typing=setInterval(()=>{tText.textContent=text.slice(0,++i);tText.append(c);if(i>=text.length){clearInterval(typing);setTimeout(()=>{if(!speaking)tSvg.classList.remove('talking')},300)}},20);
-  if(voiceOn&&canSpeak){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ru-RU';const v=speechSynthesis.getVoices().find(v=>/^ru/i.test(v.lang));if(v)u.voice=v;u.pitch=.75;speaking=true;u.onend=u.onerror=()=>{speaking=false;tSvg.classList.remove('talking')};speechSynthesis.speak(u)}
+  clearInterval(typing);setTalking(true);tText.textContent='';const c=document.createElement('span');c.className='cur';let i=0;
+  typing=setInterval(()=>{tText.textContent=text.slice(0,++i);tText.append(c);if(i>=text.length){clearInterval(typing);setTimeout(()=>{if(!speaking)setTalking(false)},300)}},20);
+  if(voiceOn&&canSpeak){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ru-RU';const v=speechSynthesis.getVoices().find(v=>/^ru/i.test(v.lang));if(v)u.voice=v;u.pitch=.75;speaking=true;u.onend=u.onerror=()=>{speaking=false;setTalking(false)};speechSynthesis.speak(u)}
   tChoices.innerHTML='';(choices||menuT()).forEach(o=>{const b=document.createElement('button');b.textContent=o.t;if(o.go)b.className='go';b.onclick=o.f;tChoices.append(b)});rest();
 }
 const menuT=()=>[{t:'Факт о Карачае',f:fact},{t:'Совет',f:tip},{t:'Подобрать прогулку',f:quiz,go:1}];
