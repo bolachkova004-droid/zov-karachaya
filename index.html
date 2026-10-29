@@ -198,11 +198,11 @@ img{display:block;max-width:100%}
 .breed{background:var(--choco);color:var(--cream)}
 .breed .grid2{align-items:start}
 .breed-media{position:relative;height:clamp(520px,64vw,860px)}
-.breed-media .a{position:absolute;inset:0 18% 0 0}
+.breed-media .a{position:absolute;inset:0}
 .breed-media .b{position:absolute;right:0;bottom:8%;width:46%;aspect-ratio:1;border:8px solid var(--choco)}
 .breed-media .pill{position:absolute;z-index:3}
 .breed-media .q1{left:6%;top:6%;rotate:-5deg}
-.breed-media .q2{right:6%;top:30%;rotate:4deg}
+.breed-media .q2{right:6%;bottom:8%;rotate:4deg}
 .checks{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:10px}
 .checks li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:22px 24px;border-radius:22px;background:rgba(243,239,230,.07)}
 .checks .ck{width:34px;height:34px;border-radius:50%;background:var(--olive);color:var(--ink);display:grid;place-items:center}
@@ -269,12 +269,15 @@ img{display:block;max-width:100%}
 /* ---------- 06 · свет ---------- */
 .lightsec{--p:0;background:#141412;color:var(--cream);padding-bottom:clamp(170px,22vw,300px)}
 .lightsec:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#141412 0%,#3a2d23 40%,#8a5432 72%,#e1a56e 100%);opacity:var(--p)}
-.sun{position:absolute;left:66%;bottom:0;width:48vmax;height:48vmax;margin-left:-24vmax;border-radius:50%;background:radial-gradient(circle,#ffe2b4 0%,#f1b26a 26%,rgba(230,150,80,0) 66%);transform:translateY(calc(70% - var(--p)*42%));opacity:calc(.12 + var(--p)*.88)}
+.bgph{position:absolute;inset:0}
+.bgph img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;opacity:calc(.2 + var(--p)*.8);scale:calc(1.15 - var(--p)*.15)}
+.bgph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,18,.62) 0%,rgba(20,20,18,.12) 42%,rgba(20,20,18,.45) 100%)}
 .lightsec .ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(80px,14vw,180px)}
 .lightsec>.grid2,.lightsec>.hours{position:relative;z-index:2}
 .hours{margin-top:clamp(40px,6vw,80px);display:grid;gap:10px}
-.hour{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:center;padding:22px 22px 22px 26px;border-radius:999px;background:rgba(243,239,230,.08);backdrop-filter:blur(6px);cursor:pointer;transition:background .5s}
-.hour:hover{background:rgba(243,239,230,.18)}
+.hour{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:center;padding:22px 22px 22px 26px;border-radius:999px;background:rgba(20,20,18,.34);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;transition:background .5s}
+.hour:hover{background:rgba(20,20,18,.55)}
+.hour>.pill{justify-self:start}
 .hour h3{font:800 clamp(30px,4vw,64px)/1 var(--font);letter-spacing:-.05em;text-transform:uppercase;margin:0;transition:transform .8s var(--ease)}
 .hour:hover h3{transform:translateX(14px)}
 .hour .go{width:56px;height:56px;border-radius:50%;background:var(--cream);color:var(--ink);display:grid;place-items:center}
@@ -282,9 +285,10 @@ img{display:block;max-width:100%}
 /* ---------- 07 · как проходит ---------- */
 .ritual{background:var(--paper)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(40px,6vw,80px)}
-.step{border-radius:calc(var(--r) - 8px);background:var(--paper2);padding:12px 12px 26px;display:flex;flex-direction:column}
-.step .ph{aspect-ratio:4/3.4;border-radius:calc(var(--r) - 16px)}
-.step .ph .pill{position:absolute;left:14px;top:14px;z-index:2;font-size:15px;font-weight:800}
+.step{border-radius:calc(var(--r) - 8px);padding:16px 12px 30px;display:flex;flex-direction:column;min-height:clamp(320px,30vw,440px);transition:transform .8s var(--ease)}
+.step:hover{transform:translateY(-8px) rotate(-.6deg)}
+.step-n{font:900 clamp(110px,11vw,190px)/.8 var(--font);letter-spacing:-.07em;margin:6px 10px auto}
+.step.choco p{color:rgba(243,239,230,.75)}.step.pink p,.step.olive p{color:rgba(29,29,27,.7)}
 .step h3{font:800 clamp(28px,2.4vw,38px)/1 var(--font);letter-spacing:-.05em;text-transform:uppercase;margin:22px 14px 10px}
 .step p{margin:0 14px;color:var(--mute)}
 
@@ -323,9 +327,9 @@ img{display:block;max-width:100%}
 /* ---------- 10 · финал ---------- */
 .finale{height:min(110vh,980px);min-height:620px;padding:0;color:var(--cream);display:flex;align-items:flex-end}
 .finale .ph{position:absolute;inset:0;border-radius:0}
-.finale .ph img{object-position:40% center}
-.finale:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,28,26,.88) 0%,rgba(28,28,26,.15) 55%,rgba(28,28,26,.3) 100%)}
-.finale-in{position:relative;z-index:2;width:100%;padding:0 var(--pad) clamp(30px,5vw,64px);display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:end}
+.finale .ph img{object-position:50% 68%}
+.finale:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,28,26,.8) 0%,rgba(28,28,26,.3) 48%,rgba(28,28,26,0) 70%),linear-gradient(0deg,rgba(28,28,26,.55) 0%,rgba(28,28,26,0) 40%)}
+.finale-in{position:relative;z-index:2;width:min(760px,100%);padding:0 var(--pad) clamp(30px,5vw,64px);display:grid;gap:26px;align-items:end}
 .finale-in p{margin:0 0 26px;color:rgba(243,239,230,.88)}
 
 /* ---------- 11 · запись ---------- */
@@ -437,6 +441,8 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
   .hour{grid-template-columns:1fr auto;border-radius:28px;padding:20px}
   .hour .small{grid-column:1/-1;justify-self:start}
   .hero-title{font-size:clamp(54px,19vw,130px)}
+  .finale .ph img{object-position:72% 66%}
+  .finale:after{background:linear-gradient(0deg,rgba(28,28,26,.88) 0%,rgba(28,28,26,.2) 50%,rgba(28,28,26,0) 75%)}
   .row{grid-template-columns:44px 1fr 48px;gap:12px;padding:18px 12px 18px 16px}
   .row p{grid-column:2/3;grid-row:2}
   .row .go{grid-column:3;grid-row:1/3;width:44px;height:44px}
@@ -522,7 +528,7 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
 <!-- ============ 02 · ЗОВ ============ -->
 <section class="slide manifest" id="manifest">
   <div class="meta"><span>Зов Карачая</span><span>02 — Зов</span></div>
-  <p class="scrub" id="scrub">Есть Кисловодск из окна машины. А есть тот, <span class="chip"><img src="img/ears-hills.jpg" alt=""></span> до которого добираются верхом: слышно шаг лошади, меняется воздух, <span class="chip"><img src="img/detail-rope.jpg" alt=""></span> и город исчезает за спиной. Кавказ начинается там, где <span class="hp olive">заканчивается</span> дорога.</p>
+  <p class="scrub" id="scrub">Есть Кисловодск из окна машины. А есть тот, до которого добираются <span class="hp pink r">верхом</span>: слышно шаг лошади, меняется воздух, и город исчезает за спиной. Кавказ начинается там, где <span class="hp olive">заканчивается</span> дорога.</p>
   <div class="figs">
     <div class="fig paper2" style="background:var(--paper2)" data-fade><span class="pill pink">горные локации</span><b data-count="3">0</b><p>Олимпийский парк, Малое и Большое Седло</p></div>
     <div class="fig choco" data-fade style="--d:.1s"><span class="pill olive">прогулок</span><b data-count="6">0</b><p>от первого знакомства до свободного темпа</p></div>
@@ -536,7 +542,6 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
   <div class="grid2">
     <div class="breed-media">
       <div class="ph a" data-reveal><img src="img/forest-pair.jpg" alt="Два осёдланных вороных коня отдыхают в еловом лесу" loading="lazy" data-parallax=".05"></div>
-      <div class="ph b" data-reveal style="transition-delay:.25s"><img src="img/detail-mane.jpg" alt="Грива вороного карачаевского коня" loading="lazy"></div>
       <span class="pill olive q1">вороные и гнедые</span>
       <span class="pill pink q2">верхи Кубани</span>
     </div>
@@ -586,13 +591,13 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
         <span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span>
       </article>
       <article class="card" data-book="Кавказ на ладони" data-cursor="Выбрать" tabindex="0">
-        <img src="img/route-4.jpg" alt="" loading="lazy" style="object-position:58% center">
+        <img src="img/saddle-elbrus.jpg" alt="" loading="lazy">
         <div class="top"><span class="no">04</span><span class="pill olive">флагман</span></div>
         <div class="body"><div class="tags"><span class="pill paper">Большое Седло</span><span class="pill pink">длинный</span></div><h3>Кавказ на ладони</h3><p>Для тех, кто хочет действительно уйти в горы. Наверху — Кавказский хребет и, если позволит погода, Эльбрус.</p></div>
         <span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span>
       </article>
       <article class="card" data-book="Выше города" data-cursor="Выбрать" tabindex="0">
-        <img src="img/frame-elbrus.jpg" alt="" loading="lazy" style="object-position:40% center">
+        <img src="img/day.jpg" alt="" loading="lazy" style="object-position:48% center">
         <div class="top"><span class="no">05</span><span class="pill paper">обзорный</span></div>
         <div class="body"><div class="tags"><span class="pill olive">видовой</span><span class="pill pink">для фото</span></div><h3>Выше города</h3><p>Ради высоты и пространства: виды, фотографии и Кавказ без целого дня в седле.</p></div>
         <span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span>
@@ -630,7 +635,7 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
 
 <!-- ============ 06 · СВЕТ ============ -->
 <section class="slide lightsec" id="light">
-  <div class="sun" aria-hidden="true"></div>
+  <div class="bgph" aria-hidden="true"><img src="img/sunrays.jpg" alt="" loading="lazy"></div>
   <div class="meta"><span>Зов Карачая</span><span>06 — Свет</span></div>
   <div class="grid2">
     <h2 class="h" data-split>Когда горы <span class="hp pink">звучат</span> тише</h2>
@@ -652,9 +657,9 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <p class="lead mute" data-fade>Даже если вы никогда не сидели в седле: подберём лошадь, всё покажем и выберем маршрут под вас.</p>
   </div>
   <div class="steps">
-    <div class="step" data-fade><div class="ph" data-reveal><img src="img/detail-rope.jpg" alt="Уздечка из верёвки и кожи крупным планом" loading="lazy"><span class="pill olive">01</span></div><h3>Знакомство</h3><p>Подбираем лошадь под вас. Показываем, как подойти, сесть и держать повод. Отвечаем на все «а если».</p></div>
-    <div class="step" data-fade style="--d:.12s"><div class="ph" data-reveal><img src="img/route-2.jpg" alt="Лесная тропа, вид из седла" loading="lazy"><span class="pill pink">02</span></div><h3>Тропа</h3><p>Идём в темпе группы, инструктор рядом. Лошадь знает рельеф — вам остаётся смотреть по сторонам.</p></div>
-    <div class="step" data-fade style="--d:.24s"><div class="ph" data-reveal><img src="img/frame-elbrus.jpg" alt="Плато и Эльбрус на горизонте" loading="lazy"><span class="pill choco">03</span></div><h3>Горизонт</h3><p>Наверху — простор и Кавказский хребет, а в ясную погоду — Эльбрус. Ради этого вида сюда и возвращаются.</p></div>
+    <div class="step olive" data-fade><span class="step-n">01</span><h3>Знакомство</h3><p>Подбираем лошадь под вас. Показываем, как подойти, сесть и держать повод. Отвечаем на все «а если».</p></div>
+    <div class="step pink" data-fade style="--d:.12s"><span class="step-n">02</span><h3>Тропа</h3><p>Идём в темпе группы, инструктор рядом. Лошадь знает рельеф — вам остаётся смотреть по сторонам.</p></div>
+    <div class="step choco" data-fade style="--d:.24s"><span class="step-n">03</span><h3>Горизонт</h3><p>Наверху — простор и Кавказский хребет, а в ясную погоду — Эльбрус. Ради этого вида сюда и возвращаются.</p></div>
   </div>
 </section>
 
@@ -681,29 +686,28 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
   </div>
   <div class="group">
     <span class="pill pink">фотосессии</span>
-    <div class="row" data-book="Фотосессия с карачаевской лошадью" data-img="img/route-4.jpg" data-cursor="Записаться"><span class="n">01</span><h3>С карачаевской лошадью</h3><p>Можно на земле или несколько кадров в седле.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Фотопрогулка" data-img="img/ears-hills.jpg" data-cursor="Записаться"><span class="n">02</span><h3>Фотопрогулка</h3><p>Маршрут верхом с остановками в красивых точках.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Фотосессия для семьи и подруг" data-img="img/forest-pair.jpg" data-cursor="Записаться"><span class="n">03</span><h3>Для семьи и подруг</h3><p>Закрытый формат, при желании — с фотографом.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Фотосессия с карачаевской лошадью" data-cursor="Записаться"><span class="n">01</span><h3>С карачаевской лошадью</h3><p>Можно на земле или несколько кадров в седле.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Фотопрогулка" data-cursor="Записаться"><span class="n">02</span><h3>Фотопрогулка</h3><p>Маршрут верхом с остановками в красивых точках.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Фотосессия для семьи и подруг" data-cursor="Записаться"><span class="n">03</span><h3>Для семьи и подруг</h3><p>Закрытый формат, при желании — с фотографом.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
   </div>
   <div class="group">
     <span class="pill olive">для своих</span>
-    <div class="row" data-book="Женская прогулка" data-img="img/route-2.jpg" data-cursor="Записаться"><span class="n">04</span><h3>Женская прогулка</h3><p>Небольшая женская группа и девушка-инструктор.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Девичник в горах" data-img="img/detail-mane.jpg" data-cursor="Записаться"><span class="n">05</span><h3>Девичник в горах</h3><p>Подруги, лошади, фотосессия и чаепитие или пикник.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Предложение в горах" data-img="img/day.jpg" data-cursor="Обсудить"><span class="n">06</span><h3>Предложение в горах</h3><p>Тихая точка, правильное время, фотограф по желанию.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Женская прогулка" data-cursor="Записаться"><span class="n">04</span><h3>Женская прогулка</h3><p>Небольшая женская группа и девушка-инструктор.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Девичник в горах" data-cursor="Записаться"><span class="n">05</span><h3>Девичник в горах</h3><p>Подруги, лошади, фотосессия и чаепитие или пикник.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Предложение в горах" data-cursor="Обсудить"><span class="n">06</span><h3>Предложение в горах</h3><p>Тихая точка, правильное время, фотограф по желанию.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
   </div>
   <div class="group">
     <span class="pill choco">остаться подольше</span>
-    <div class="row" data-book="День с карачаевской лошадью" data-img="img/overhead.jpg" data-cursor="Записаться"><span class="n">07</span><h3>День с лошадью</h3><p>Знакомство с породой, подготовка — и только потом в седло.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Кисловодск верхом — тур выходного дня" data-img="img/hero.jpg" data-cursor="Программа"><span class="n">08</span><h3>Кисловодск верхом · 2 дня</h3><p>День знакомства и день большого горного маршрута.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Выходные на высоте" data-img="img/frame-elbrus.jpg" data-cursor="Программа"><span class="n">09</span><h3>Выходные на высоте · 2 дня</h3><p>Несколько маршрутов, пикник и фотосъёмка по желанию.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
-    <div class="row" data-book="Карачаевские лошади Кавказа" data-img="img/detail-rope.jpg" data-cursor="Программа"><span class="n">10</span><h3>Лошади Кавказа</h3><p>Путешествие о породе, людях и культуре.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="День с карачаевской лошадью" data-cursor="Записаться"><span class="n">07</span><h3>День с лошадью</h3><p>Знакомство с породой, подготовка — и только потом в седло.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Кисловодск верхом — тур выходного дня" data-cursor="Программа"><span class="n">08</span><h3>Кисловодск верхом · 2 дня</h3><p>День знакомства и день большого горного маршрута.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Выходные на высоте" data-cursor="Программа"><span class="n">09</span><h3>Выходные на высоте · 2 дня</h3><p>Несколько маршрутов, пикник и фотосъёмка по желанию.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
+    <div class="row" data-book="Карачаевские лошади Кавказа" data-cursor="Программа"><span class="n">10</span><h3>Лошади Кавказа</h3><p>Путешествие о породе, людях и культуре.</p><span class="go"><svg width="20" height="20"><use href="#arr"/></svg></span></div>
   </div>
 </section>
-<div class="preview" id="preview" aria-hidden="true"><img id="previewImg" alt=""></div>
 
 <!-- ============ 10 · ФИНАЛ ============ -->
 <section class="slide finale" id="finale">
-  <div class="ph" data-reveal><img src="img/day.jpg" alt="Карачаевский конь на плато, на горизонте Эльбрус" loading="lazy" data-parallax=".07"></div>
+  <div class="ph" data-reveal><img src="img/dog.jpg" alt="Кавказская овчарка лежит на горном плато под облачным небом" loading="lazy" data-parallax=".07"></div>
   <div class="meta" style="color:var(--cream)"><span>Зов Карачая</span><span>10 — Тропа ждёт</span></div>
   <div class="finale-in">
     <h2 class="h" data-split>Одного раза <span class="hp olive">мало</span></h2>
@@ -718,7 +722,6 @@ footer{padding:clamp(50px,7vw,90px) calc(var(--pad) + var(--gap)) 28px;color:var
     <div>
       <h2 class="h" data-split>Какой Кавказ <span class="hp olive">увидите</span> вы?</h2>
       <div class="how" data-fade><div><span class="pill olive">01</span>Вы оставляете заявку — это минута</div><div><span class="pill pink">02</span>Мы связываемся и уточняем детали</div><div><span class="pill paper">03</span>Встречаемся у лошадей. Дальше — тропа</div></div>
-      <div class="ph book-ph" data-reveal><img src="img/overhead.jpg" alt="Два вороных коня с верёвочными уздечками" loading="lazy"></div>
     </div>
     <div class="form-card" data-fade>
       <form class="form" id="mainForm">
@@ -870,9 +873,6 @@ $$('.mc').forEach(el=>io.observe(el));
 const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const el=e.target,to=+el.dataset.count,t0=performance.now();(function f(t){const p=clamp((t-t0)/1400);el.textContent=String(Math.round(to*(1-Math.pow(1-p,4)))).padStart(2,'0');if(p<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
 $$('[data-count]').forEach(el=>cio.observe(el));
 
-/* ---------- превью форматов ---------- */
-const prev=$('#preview'),prevImg=$('#previewImg');let px=mx,py=my;
-if(fine)$$('.row').forEach(r=>{r.addEventListener('mouseenter',()=>{prevImg.src=r.dataset.img;prev.classList.add('on')});r.addEventListener('mouseleave',()=>prev.classList.remove('on'))});
 
 /* ---------- звук ветра (синтез) ---------- */
 let ac,gain;const sound=$('#sound');
@@ -889,7 +889,6 @@ let lastY=scrollY,vel=0,rb=0,hx=0,hy=0;
 function frame(){
   const y=scrollY,dy=y-lastY;lastY=y;vel=lerp(vel,dy,.1);
   cx=lerp(cx,mx,.2);cy=lerp(cy,my,.2);cur.style.transform=`translate(${cx}px,${cy}px)`;
-  px=lerp(px,mx,.12);py=lerp(py,my,.12);prev.style.translate=`${px}px ${py}px`;
   if(Math.abs(dy)>2)nav.classList.toggle('hide',dy>0&&y>vh*.8&&!menu.classList.contains('open'));
   progress.style.transform=`scaleX(${y/(document.documentElement.scrollHeight-vh)})`;
   if(y<vh*1.2&&!reduce){heroMedia.style.transform=`translate3d(0,${y*.3}px,0)`;hx=lerp(hx,(mx/vw-.5)*-20,.06);hy=lerp(hy,(my/vh-.5)*-12,.06);heroImg.style.translate=`${hx}px ${hy}px`}
